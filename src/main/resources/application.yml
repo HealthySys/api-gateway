@@ -16,6 +16,7 @@ spring:
           lower-case-service-id: true
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+        - RemoveRequestHeader=X-Internal-Service-Token
       globalcors:
         cors-configurations:
           '[/**]':
