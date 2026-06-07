@@ -19,6 +19,14 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers("/api/auth/**", "/actuator/**", "/fallback/**", "/ws/**").permitAll()
+                        // Swagger UI agregado + specs OpenAPI de cada serviço (somente documentação)
+                        .pathMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/v3/api-docs/**",
+                                "/openapi/**"
+                        ).permitAll()
                         .anyExchange().authenticated())
                 .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)
                 .build();
