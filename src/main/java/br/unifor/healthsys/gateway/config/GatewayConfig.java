@@ -96,6 +96,30 @@ public class GatewayConfig {
                         .path("/ws/**")
                         .uri("lb:ws://notification-service"))
 
+                // Specs OpenAPI agregadas no Swagger UI do gateway.
+                // Prefixo /openapi/** não colide com o discovery-locator (/{service-id}/**),
+                // evitando o bug do RemoveRequestHeader sobre ReadOnlyHttpHeaders.
+                .route("openapi-user-service", r -> r
+                        .path("/openapi/user-service")
+                        .filters(f -> f.setPath("/api-docs"))
+                        .uri("lb://user-service"))
+                .route("openapi-patient-service", r -> r
+                        .path("/openapi/patient-service")
+                        .filters(f -> f.setPath("/api-docs"))
+                        .uri("lb://patient-service"))
+                .route("openapi-record-service", r -> r
+                        .path("/openapi/record-service")
+                        .filters(f -> f.setPath("/api-docs"))
+                        .uri("lb://record-service"))
+                .route("openapi-triage-service", r -> r
+                        .path("/openapi/triage-service")
+                        .filters(f -> f.setPath("/api-docs"))
+                        .uri("lb://triage-service"))
+                .route("openapi-notification-service", r -> r
+                        .path("/openapi/notification-service")
+                        .filters(f -> f.setPath("/api-docs"))
+                        .uri("lb://notification-service"))
+
                 .build();
     }
 }

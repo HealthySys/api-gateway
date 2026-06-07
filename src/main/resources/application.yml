@@ -24,6 +24,24 @@ spring:
             allowed-methods: "*"
             allowed-headers: "*"
 
+springdoc:
+  api-docs:
+    # path próprio do gateway; não desabilitar (desativaria toda a autoconfig do springdoc, inclusive o Swagger UI)
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: 1 - User Service (auth/usuários)
+        url: /openapi/user-service
+      - name: 2 - Patient Service (pacientes)
+        url: /openapi/patient-service
+      - name: 3 - Record Service (prontuários)
+        url: /openapi/record-service
+      - name: 4 - Triage Service (triagem)
+        url: /openapi/triage-service
+      - name: 5 - Notification Service (notificações)
+        url: /openapi/notification-service
+
 security:
   jwt:
     jwk-set-uri: ${SECURITY_JWT_JWK_SET_URI:http://localhost:8081/.well-known/jwks.json}
